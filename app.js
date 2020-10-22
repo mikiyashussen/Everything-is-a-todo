@@ -92,8 +92,28 @@
 let todoObject = {
     todos: [],
     displayTodos: function () {
-        console.log(this.todos);
+        if(this.todos.length === 0){
+            console.log("Your todo is empty");
+        }
+        else{
+            for (let i = 0; i < this.todos.length; i++) {
+                console.log(this.todos[i].todoText);
+                
+                // check for completed
+                if (this.todos[i].completed === true) {
+                    console.log("Task is completed");
+                }
+                else {
+                    console.log("Task is not completed");
+
+                }
+            }
+
+            
+        }
+        
     },
+
     addTodos: function (todoText) {
         this.todos.push({
             todoText: todoText,
@@ -101,16 +121,19 @@ let todoObject = {
         });
         this.displayTodos();
     },
+
     deleteTodos: function (item){
         this.todos.splice(item, 1);
         this.displayTodos();
 
     },
+
     editTodos: function (positioOfItemToEdit, text){
         this.todos[positioOfItemToEdit].todoText = text;
         this.displayTodos();
 
     },
+
     toggleCompleted: function (positionOfItemToToggle) {
         let todo = this.todos[positionOfItemToToggle].completed; 
         todo = !todo;
