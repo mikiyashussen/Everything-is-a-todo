@@ -96,22 +96,16 @@ let todoObject = {
             console.log("Your todo is empty");
         }
         else{
-            for (let i = 0; i < this.todos.length; i++) {
-                console.log(this.todos[i].todoText);
-                
+            for (var i = 0; i < this.todos.length; i++) {
                 // check for completed
                 if (this.todos[i].completed === true) {
-                    console.log("Task is completed");
+                    console.log("(X)", this.todos[i].todoText);
                 }
                 else {
-                    console.log("Task is not completed");
-
+                    console.log("( )", this.todos[i].todoText);
                 }
             }
-
-            
         }
-        
     },
 
     addTodos: function (todoText) {
@@ -135,9 +129,34 @@ let todoObject = {
     },
 
     toggleCompleted: function (positionOfItemToToggle) {
-        let todo = this.todos[positionOfItemToToggle].completed; 
-        todo = !todo;
+        var todo = this.todos[positionOfItemToToggle]; 
+        todo.completed = !todo.completed;
+        // console.log(todo);
         this.displayTodos();
         
+    },
+
+    toggleAll: function (){
+
+        let count = 0;
+        // access all todos and check completed poperty
+            for(let i=0; i<this.todos.length; i++){
+                if(this.todos[i].completed === true){
+                    count++;
+                }
+            }
+        // if everything is true, make everything false
+            if(count === this.todos.length){
+                for (let i = 0; i < this.todos.length; i++) {
+                    this.todos[i].completed = false
+                }
+            }
+            else {
+                for (let i = 0; i < this.todos.length; i++) {
+                  this.todos[i].completed = true;
+                }
+            }
+
+        //otherwise, make eveything true
     }
 }
