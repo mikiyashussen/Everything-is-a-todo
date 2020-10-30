@@ -91,6 +91,7 @@
 //..........................version 3 .........................//
 let todoObject = {
     todos: [],
+
     displayTodos: function () {
         if(this.todos.length === 0){
             console.log("Your todo is empty");
@@ -137,26 +138,35 @@ let todoObject = {
     },
 
     toggleAll: function (){
+        let totalTodos = this.todos.length;
+        let completedTodos = 0;
+    // access all todos and check completed poperty
+        for(let i=0; i<totalTodos; i++){
+            if(this.todos[i].completed === true){
+                completedTodos++;
+            }
+        }
+    // if everything is true, make everything false
+        if (completedTodos === totalTodos) {
+            for (let i = 0; i < totalTodos; i++) {
+            this.todos[i].completed = false;
+            }
+        }
+    //otherwise, make eveything true
+        else {
+            for (let i = 0; i < totalTodos; i++) {
+            this.todos[i].completed = true;
+            }
+        }
 
-        let count = 0;
-        // access all todos and check completed poperty
-            for(let i=0; i<this.todos.length; i++){
-                if(this.todos[i].completed === true){
-                    count++;
-                }
-            }
-        // if everything is true, make everything false
-            if(count === this.todos.length){
-                for (let i = 0; i < this.todos.length; i++) {
-                    this.todos[i].completed = false
-                }
-            }
-            else {
-                for (let i = 0; i < this.todos.length; i++) {
-                  this.todos[i].completed = true;
-                }
-            }
-
-        //otherwise, make eveything true
+        this.displayTodos();
     }
 }
+
+// get access to display todo button
+let displayButton = document.getElementById('displayTodosButton');
+
+// run displayTodo method  
+displayButton.addEventListener('click', function(){
+    todoObject.displayTodos();
+});
