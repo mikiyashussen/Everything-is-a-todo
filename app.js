@@ -170,3 +170,9 @@ let displayButton = document.getElementById('displayTodosButton');
 displayButton.addEventListener('click', function(){
     todoObject.displayTodos();
 });
+
+let toggleAllButton = document.getElementById('toggleAllButton');
+
+toggleAllButton.addEventListener('click', function(){
+    todoObject.toggleAll()
+});
