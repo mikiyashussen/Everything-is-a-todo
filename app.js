@@ -163,19 +163,6 @@ let todoObject = {
     }
 }
 
-// get access to display todo button
-// let displayButton = document.getElementById('displayTodosButton');
-
-// // run displayTodo method  
-// displayButton.addEventListener('click', function(){
-//     todoObject.displayTodos();
-// });
-
-// let toggleAllButton = document.getElementById('toggleAllButton');
-
-// toggleAllButton.addEventListener('click', function(){
-//     todoObject.toggleAll()
-// });
 
 
 let handlers = {
@@ -185,5 +172,11 @@ let handlers = {
 
     toggleAll: function(){
         todoObject.toggleAll();
+    },
+
+    addTodos: function(){
+        let addTodoTextInput = document.getElementById("addTodoTextInput");
+        todoObject.addTodos(addTodoTextInput.value);    
+        addTodoTextInput.value = ''; 
     }
 }
