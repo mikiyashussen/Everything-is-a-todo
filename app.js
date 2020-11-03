@@ -178,5 +178,12 @@ let handlers = {
         let addTodoTextInput = document.getElementById("addTodoTextInput");
         todoObject.addTodos(addTodoTextInput.value);    
         addTodoTextInput.value = ''; 
+    },
+
+    editTodos: function(){
+        let editTextPosition = document.getElementById("edit-position-input");
+        let newText = document.getElementById("edit-text-input");
+        todoObject.editTodos(editTextPosition.value, newText.value);
+
     }
 }
