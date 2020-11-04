@@ -117,8 +117,8 @@ let todoObject = {
         this.displayTodos();
     },
 
-    deleteTodos: function (item){
-        this.todos.splice(item, 1);
+    deleteTodos: function (itemPosition){
+        this.todos.splice(itemPosition, 1);
         this.displayTodos();
 
     },
@@ -185,5 +185,10 @@ let handlers = {
         let newText = document.getElementById("edit-text-input");
         todoObject.editTodos(editTextPosition.value, newText.value);
 
+    },
+
+    deleteTodos: function(){
+        let deleteTextPosition = document.getElementById("delete-item-position");
+        todoObject.deleteTodos(deleteTextPosition.value);
     }
 }
