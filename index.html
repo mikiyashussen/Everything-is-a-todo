@@ -17,19 +17,25 @@
 
 
     <div>
-        <button onclick="handlers.addTodos()">Add Todo</button>
         <input type="text" id="addTodoTextInput">
+        <button onclick="handlers.addTodos()">Add Todo</button>
     </div>
 
     <div>
-        <button onclick="handlers.editTodos()">Edit Todo</button>
         <input id="edit-position-input" placeholder="position">
         <input id="edit-text-input" placeholder="new text">
+        <button onclick="handlers.editTodos()">Edit Todo</button>
+
     </div>
 
     <div>
         <input type="text" id="delete-item-position">
         <button onclick="handlers.deleteTodos()">Delete</button>
+    </div>
+
+    <div>
+        <input type="text" id="toggle-item-position">
+        <button onclick="handlers.toggleCompleted()">Toggle</button>
     </div>
     <script src="app.js"></script>
 </body>

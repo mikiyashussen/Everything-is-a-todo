@@ -190,5 +190,10 @@ let handlers = {
     deleteTodos: function(){
         let deleteTextPosition = document.getElementById("delete-item-position");
         todoObject.deleteTodos(deleteTextPosition.value);
+    },
+
+    toggleCompleted: function(){
+        let toggleTextPosition = document.getElementById("toggle-item-position");
+        todoObject.toggleCompleted(toggleTextPosition.value);
     }
 }
