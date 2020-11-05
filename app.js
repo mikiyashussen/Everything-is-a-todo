@@ -90,23 +90,35 @@
 
 //..........................version 3 .........................//
 let todoObject = {
-    todos: [],
+    todos: [
+        {todoText: "item 1", completed: false},
+        {todoText: "item 2", completed: false},
+        {todoText: "item 3", completed: false}
+    ],
 
     displayTodos: function () {
-        if(this.todos.length === 0){
-            console.log("Your todo is empty");
+        // if(this.todos.length === 0){
+        //     console.log("Your todo is empty");
+        // }
+        // else{
+        //     for (var i = 0; i < this.todos.length; i++) {
+        //         // check for completed
+        //         if (this.todos[i].completed === true) {
+        //             console.log("(X)", this.todos[i].todoText);
+        //         }
+        //         else {
+        //             console.log("( )", this.todos[i].todoText);
+        //         }
+        //     }
+        // }
+
+        let todoListUl = document.getElementById("todo-list-ul");
+        for (var i = 0; i < this.todos.length; i++){
+            let todoListLi = document.createElement("li");
+            todoListLi.textContent = this.todos[i].todoText;
+            todoListUl.append(todoListLi);
         }
-        else{
-            for (var i = 0; i < this.todos.length; i++) {
-                // check for completed
-                if (this.todos[i].completed === true) {
-                    console.log("(X)", this.todos[i].todoText);
-                }
-                else {
-                    console.log("( )", this.todos[i].todoText);
-                }
-            }
-        }
+        
     },
 
     addTodos: function (todoText) {
