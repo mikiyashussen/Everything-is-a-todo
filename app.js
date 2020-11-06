@@ -15,6 +15,14 @@ let todoObject = {
         for (var i = 0; i < this.todos.length; i++){
             let todoListLi = document.createElement("li");
             todoListLi.innerText = this.todos[i].todoText;
+            
+            if(this.todos[i].completed === true){
+                todoListLi.innerText = "[X]  " + this.todos[i].todoText;
+            }
+            else{
+                todoListLi.innerText = "[ ]  " + this.todos[i].todoText;
+
+            }
             todoListUl.append(todoListLi);
         }
         
