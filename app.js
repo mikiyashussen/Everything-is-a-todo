@@ -13,14 +13,22 @@ let todoObject = {
         todoListUl.innerHTML = "";
 
         for (var i = 0; i < this.todos.length; i++){
-            let todoListLi = document.createElement("li");
+            const todoListLi = document.createElement("li");
             todoListLi.innerText = this.todos[i].todoText;
+            let deleteBtn = document.createElement("button");
+            deleteBtn.innerText = "Delete";
+
+            // add event listener
+            deleteBtn.addEventListener('click', this.remove);
+            
             
             if(this.todos[i].completed === true){
-                todoListLi.innerText = "[X]  " + this.todos[i].todoText;
+                todoListLi.innerText = "[X] " + this.todos[i].todoText;
+                todoListLi.appendChild(deleteBtn);
             }
             else{
-                todoListLi.innerText = "[ ]  " + this.todos[i].todoText;
+                todoListLi.innerText = "[ ]" + this.todos[i].todoText;
+                todoListLi.appendChild(deleteBtn);
 
             }
             todoListUl.append(todoListLi);
@@ -37,12 +45,16 @@ let todoObject = {
         this.displayTodos();
     },
 
-    deleteTodos: function (itemPosition){
-
-        this.todos.splice(itemPosition, 1);
-        this.displayTodos();
+    remove: function(e){
+        console.log(e.targetTouches);
 
     },
+    // deleteTodos: function (itemPosition){
+        
+    //     this.todos.splice(itemPosition, 1);
+    //     this.displayTodos();
+
+    // },
 
     editTodos: function (positioOfItemToEdit, text){
         this.todos[positioOfItemToEdit].todoText = text;
@@ -84,12 +96,11 @@ let todoObject = {
     }
 }
 
+// Display todos on DOM;
+todoObject.displayTodos();
 
 
 let handlers = {
-    displayTodos: function(){
-        todoObject.displayTodos();
-    },
 
     toggleAll: function(){
         todoObject.toggleAll();
@@ -108,10 +119,10 @@ let handlers = {
 
     },
 
-    deleteTodos: function(){
-        let deleteTextPosition = document.getElementById("delete-item-position");
-        todoObject.deleteTodos(deleteTextPosition.value);
-    },
+    // deleteTodos: function(){
+    //     let deleteTextPosition = document.getElementById("delete-item-position");
+    //     todoObject.deleteTodos(deleteTextPosition.value);
+    // },
 
     toggleCompleted: function(){
         let toggleTextPosition = document.getElementById("toggle-item-position");
