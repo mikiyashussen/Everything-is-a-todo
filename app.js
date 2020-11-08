@@ -17,7 +17,7 @@ let todoObject = {
             todoListLi.innerText = this.todos[i].todoText;
             let deleteBtn = document.createElement("button");
             deleteBtn.innerText = "Delete";
-
+            deleteBtn.setAttribute("id", i);
             // add event listener
             deleteBtn.addEventListener('click', this.remove);
             
@@ -45,8 +45,13 @@ let todoObject = {
         this.displayTodos();
     },
 
-    remove: function(e){
-        console.log(e.targetTouches);
+    remove: function(event){
+        // Try it with accessing parentNOdes
+        // debugger;
+        let itemPosition = parseInt(event.target.id);
+        todoObject.todos.splice(itemPosition, 1);
+        // console.log(todoObject.todos[itemPosition]);...why didn't the this keyword work????
+        todoObject.displayTodos();
 
     },
     // deleteTodos: function (itemPosition){
