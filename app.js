@@ -15,20 +15,31 @@ let todoObject = {
         for (var i = 0; i < this.todos.length; i++){
             const todoListLi = document.createElement("li");
             todoListLi.innerText = this.todos[i].todoText;
+            
+            // Creating and attaching Delete button to Li
             let deleteBtn = document.createElement("button");
             deleteBtn.innerText = "Delete";
             deleteBtn.setAttribute("id", i);
+
+            // creating and attaching Toggle button to Li
+            let toggleBtn = document.createElement("button");
+            toggleBtn.innerText = "Toggle";   // Experiment the difference between innerText and innerHTML
+            toggleBtn.setAttribute("id", i);
+
             // add event listener
             deleteBtn.addEventListener('click', this.remove);
+            toggleBtn.addEventListener('click', this.toggleCompleted);
             
             
             if(this.todos[i].completed === true){
                 todoListLi.innerText = "[X] " + this.todos[i].todoText;
                 todoListLi.appendChild(deleteBtn);
+                todoListLi.appendChild(toggleBtn);
             }
             else{
                 todoListLi.innerText = "[ ]" + this.todos[i].todoText;
                 todoListLi.appendChild(deleteBtn);
+                todoListLi.appendChild(toggleBtn);
 
             }
             todoListUl.append(todoListLi);
@@ -61,19 +72,28 @@ let todoObject = {
 
     // },
 
+    toggleCompleted: function(event){
+        let positionOfItemToToggle = parseInt(event.target.id);
+        var todo = todoObject.todos[positionOfItemToToggle];
+        todo.completed = !todo.completed;
+        todoObject.displayTodos();
+    },
+
+    //  toggleCompleted: function (positionOfItemToToggle) {
+    //     var todo = this.todos[positionOfItemToToggle]; 
+    //     todo.completed = !todo.completed;
+    //     // console.log(todo);
+    //     this.displayTodos();
+        
+    // },
+
     editTodos: function (positioOfItemToEdit, text){
         this.todos[positioOfItemToEdit].todoText = text;
         this.displayTodos();
 
     },
 
-    toggleCompleted: function (positionOfItemToToggle) {
-        var todo = this.todos[positionOfItemToToggle]; 
-        todo.completed = !todo.completed;
-        // console.log(todo);
-        this.displayTodos();
-        
-    },
+   
 
     toggleAll: function (){
         let totalTodos = this.todos.length;
@@ -101,7 +121,7 @@ let todoObject = {
     }
 }
 
-// Display todos on DOM;
+// Display todos on DOM when opening the app for the first time;
 todoObject.displayTodos();
 
 
@@ -123,14 +143,4 @@ let handlers = {
         todoObject.editTodos(editTextPosition.value, newText.value);
 
     },
-
-    // deleteTodos: function(){
-    //     let deleteTextPosition = document.getElementById("delete-item-position");
-    //     todoObject.deleteTodos(deleteTextPosition.value);
-    // },
-
-    toggleCompleted: function(){
-        let toggleTextPosition = document.getElementById("toggle-item-position");
-        todoObject.toggleCompleted(toggleTextPosition.value);
-    }
 }
