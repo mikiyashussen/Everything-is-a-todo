@@ -19,12 +19,12 @@ let todoObject = {
             // Creating and attaching Delete button to Li
             let deleteBtn = document.createElement("button");
             deleteBtn.innerText = "Delete";
-            deleteBtn.setAttribute("id", i);
+            deleteBtn.id = "delete-" + i;
 
             // creating and attaching Toggle button to Li
             let toggleBtn = document.createElement("button");
             toggleBtn.innerText = "Toggle";   // Experiment the difference between innerText and innerHTML
-            toggleBtn.setAttribute("id", i);
+            toggleBtn.id = "toggle-" + i;
 
             // add event listener
             deleteBtn.addEventListener('click', this.remove);
@@ -33,15 +33,16 @@ let todoObject = {
             
             if(this.todos[i].completed === true){
                 todoListLi.innerText = "[X] " + this.todos[i].todoText;
-                todoListLi.appendChild(deleteBtn);
-                todoListLi.appendChild(toggleBtn);
+                
             }
             else{
                 todoListLi.innerText = "[ ]" + this.todos[i].todoText;
-                todoListLi.appendChild(deleteBtn);
-                todoListLi.appendChild(toggleBtn);
+                // todoListLi.appendChild(deleteBtn);
+                // todoListLi.appendChild(toggleBtn);
 
             }
+            todoListLi.append(deleteBtn);
+            todoListLi.append(toggleBtn);
             todoListUl.append(todoListLi);
         }
         
@@ -59,8 +60,8 @@ let todoObject = {
     remove: function(event){
         // Try it with accessing parentNOdes
         // debugger;
-        let itemPosition = parseInt(event.target.id);
-        todoObject.todos.splice(itemPosition, 1);
+        let itemPosition = event.target.id.split("-");
+        todoObject.todos.splice(itemPosition[itemPosition.length-1], 1);
         // console.log(todoObject.todos[itemPosition]);...why didn't the this keyword work????
         todoObject.displayTodos();
 
@@ -73,8 +74,9 @@ let todoObject = {
     // },
 
     toggleCompleted: function(event){
-        let positionOfItemToToggle = parseInt(event.target.id);
-        var todo = todoObject.todos[positionOfItemToToggle];
+        
+        let positionOfItemToToggle = event.target.id.split("-");
+        var todo = todoObject.todos[positionOfItemToToggle[positionOfItemToToggle.length - 1]];
         todo.completed = !todo.completed;
         todoObject.displayTodos();
     },
