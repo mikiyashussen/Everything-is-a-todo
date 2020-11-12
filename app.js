@@ -60,34 +60,21 @@ let todoObject = {
     remove: function(event){
         // Try it with accessing parentNOdes
         // debugger;
-        let itemPosition = event.target.id.split("-");
-        todoObject.todos.splice(itemPosition[itemPosition.length-1], 1);
+        let itemPosition = event.target.id.split("-")[1];
+        todoObject.todos.splice(itemPosition, 1);
         // console.log(todoObject.todos[itemPosition]);...why didn't the this keyword work????
         todoObject.displayTodos();
 
     },
-    // deleteTodos: function (itemPosition){
-        
-    //     this.todos.splice(itemPosition, 1);
-    //     this.displayTodos();
-
-    // },
-
+    
     toggleCompleted: function(event){
         
-        let positionOfItemToToggle = event.target.id.split("-");
-        var todo = todoObject.todos[positionOfItemToToggle[positionOfItemToToggle.length - 1]];
+        let positionOfItemToToggle = event.target.id.split("-")[1];
+        // let positionOfItemToToggle = event.target.id.slice(7);
+        let todo = todoObject.todos[positionOfItemToToggle];
         todo.completed = !todo.completed;
         todoObject.displayTodos();
     },
-
-    //  toggleCompleted: function (positionOfItemToToggle) {
-    //     var todo = this.todos[positionOfItemToToggle]; 
-    //     todo.completed = !todo.completed;
-    //     // console.log(todo);
-    //     this.displayTodos();
-        
-    // },
 
     editTodos: function (positioOfItemToEdit, text){
         this.todos[positioOfItemToEdit].todoText = text;
