@@ -58,11 +58,12 @@ let todoObject = {
     },
 
     addTodos: function (todoText) {
-        this.todos.push({
-            todoText: todoText,
-            completed: false // for toggle effect
-        });
-        
+        if(todoText !== ""){
+                this.todos.push({
+                todoText: todoText,
+                completed: false // for toggle effect
+            });
+        }
         this.displayTodos();
     },
 
@@ -89,29 +90,17 @@ let todoObject = {
         // debugger;
         // let oldText = event.target.previousSibling.previousSibling;
         let newText = window.prompt("Enter New Text");
-        let position = event.target.id.split("-")[1];
-
+        if(newText !== "" && newText !== null){
+            let position = event.target.id.split("-")[1];
+            todoObject.todos[position].todoText = newText;
+            todoObject.displayTodos();
+        }
         
-        //  if(todoObject.todos[event.target.id.split("-")[1]].completed === true){
-             
-        //     oldText.nodeValue = "[X] " + newText;
-        //  }else{
-        //     oldText.nodeValue = "[ ] " + newText;
-
-        //  }
-        todoObject.todos[position].todoText = newText;
-        // console.log(oldText);
-        todoObject.displayTodos();
 
     },
 
 
-    // editTodos: function (positioOfItemToEdit, text){
-    //     this.todos[positioOfItemToEdit].todoText = text;
-    //     this.displayTodos();
-
-    // },
-
+    
    
 
     toggleAll: function (){
