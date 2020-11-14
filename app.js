@@ -16,10 +16,15 @@ let todoObject = {
             const todoListLi = document.createElement("li");
             todoListLi.innerText = this.todos[i].todoText;
             
+            
             // Creating and attaching Delete button to Li
             let deleteBtn = document.createElement("button");
             deleteBtn.innerText = "Delete";
             deleteBtn.id = "delete-" + i;
+
+            let editBtn = document.createElement("button");
+            editBtn.innerText = "Edit";
+            editBtn.id = "edit-" + i;
 
             // creating and attaching Toggle button to Li
             let toggleBtn = document.createElement("button");
@@ -29,9 +34,12 @@ let todoObject = {
             // add event listener
             deleteBtn.addEventListener('click', this.remove);
             toggleBtn.addEventListener('click', this.toggleCompleted);
+            editBtn.addEventListener('click', this.editTodos);
+            
             
             
             if(this.todos[i].completed === true){
+                
                 todoListLi.innerText = "[X] " + this.todos[i].todoText;
                 
             }
@@ -41,8 +49,9 @@ let todoObject = {
                 // todoListLi.appendChild(toggleBtn);
 
             }
-            todoListLi.append(deleteBtn);
             todoListLi.append(toggleBtn);
+            todoListLi.append(editBtn);
+            todoListLi.append(deleteBtn);
             todoListUl.append(todoListLi);
         }
         
@@ -76,11 +85,32 @@ let todoObject = {
         todoObject.displayTodos();
     },
 
-    editTodos: function (positioOfItemToEdit, text){
-        this.todos[positioOfItemToEdit].todoText = text;
-        this.displayTodos();
+    editTodos: function (event){
+        // debugger;
+        // let oldText = event.target.previousSibling.previousSibling;
+        let newText = window.prompt("Enter New Text");
+        let position = event.target.id.split("-")[1];
+
+        
+        //  if(todoObject.todos[event.target.id.split("-")[1]].completed === true){
+             
+        //     oldText.nodeValue = "[X] " + newText;
+        //  }else{
+        //     oldText.nodeValue = "[ ] " + newText;
+
+        //  }
+        todoObject.todos[position].todoText = newText;
+        // console.log(oldText);
+        todoObject.displayTodos();
 
     },
+
+
+    // editTodos: function (positioOfItemToEdit, text){
+    //     this.todos[positioOfItemToEdit].todoText = text;
+    //     this.displayTodos();
+
+    // },
 
    
 
